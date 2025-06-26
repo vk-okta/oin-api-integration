@@ -10,7 +10,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(import.meta.dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 
-const results = await getSystemLogs();
+let connectionData = {};
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
@@ -20,8 +20,13 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
-app.get('/dashboard', (req, res) => {
-  console.log(results);
+app.get('/dashboard', async (req, res) => {
+  if (Object.keys(connectionData).length <= 0) {
+    res.render('error', { message: 'You need to save the details to continue.' });
+    return;
+  }
+
+  const results = await getSystemLogs();
   res.render('dashboard', { results });
 });
 
@@ -30,9 +35,9 @@ app.get('/save-details', (req, res) => {
 });
 
 app.post('/submit', (req, res) => {
-  const { orgDomain } = req.body;
-  console.log(orgDomain);
-  // console.log('Received inputs:', input1, input2, input3);
+  connectionData = { ...req.body };
+
+  console.log(connectionData);
 
   res.redirect('/');
 });
