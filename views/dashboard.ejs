@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Results</title>
+  </head>
+  <body>
+    <h1>Modified Results</h1>
+    <ul>
+      <% results.forEach(item => { %>
+      <li>
+        <strong>Message:</strong> <%= item.displayMessage %><br />
+        <strong>Result:</strong> <%= item.outcome.result %> <% if (item.outcome.reason) { %> <strong>Reason:</strong> <%=
+        item.outcome.reason %><br />
+        <% } %>
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>
