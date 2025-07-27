@@ -2,7 +2,6 @@ import express from 'express';
 import path from 'path';
 
 import getSystemLogs from './getSystemLogs.js';
-import prisma from './src/config/db.js';
 
 const app = express();
 const port = 8080;
@@ -43,18 +42,6 @@ app.get('/save-details', (req, res) => {
 
 app.post('/submit', async (req, res) => {
   connectionData = { ...req.body };
-
-  const savedOrg = await prisma.org.create({
-    data: {
-      domain,
-      client_id,
-      client_secret,
-      kid,
-      pem,
-    },
-  });
-
-  console.log('Saved to DB:', savedOrg);
 
   res.redirect('/');
 });
