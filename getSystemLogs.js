@@ -21,11 +21,11 @@ export default async function getSystemLogs() {
       outcome,
     }));
 
-    console.log(modResults);
+    // console.log(modResults);
 
     return modResults;
   } catch (error) {
-    console.log('Error in fetching users');
+    console.log('Error in fetching logs');
     console.log({
       status: error.response.status,
       statusText: error.response.statusText,

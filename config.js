@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 import { join } from 'path';
 
-config({ path: join(import.meta.dirname, 'testenv') });
+config({ path: join(import.meta.dirname, 'env') });
 
 export const base_url = process.env.BASE_URL;
 export const port = process.env.PORT;
