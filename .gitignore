@@ -3,3 +3,4 @@ node_modules/
 testenv
 
 private.key
+/src/generated/prisma

@@ -7,7 +7,23 @@
 <body>
   <h1>Welcome to My Site!</h1>
   <p>This is a simple landing page built with EJS.</p>
+
   <a href="/save-details">Save Details</a>
   <a href="/dashboard">Get logs</a>
+
+  <hr />
+
+  <% if (creds) { %>
+    <h2>Okta Credential Details</h2>
+    <ul>
+      <li><strong>Org Domain:</strong> <%= creds.orgDomain %></li>
+      <li><strong>Client ID:</strong> <%= creds.clientID || 'N/A' %></li>
+      <li><strong>Client Secret:</strong> <%= creds.clientSecret || 'N/A' %></li>
+      <li><strong>KID:</strong> <%= creds.kid %></li>
+      <li><strong>PEM:</strong> <pre><%= creds.pem %></pre></li>
+    </ul>
+  <% } else { %>
+    <p><em>No credentials found.</em></p>
+  <% } %>
 </body>
 </html>
